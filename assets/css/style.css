@@ -52,3 +52,11 @@ form {
     border-radius: 3px;
     cursor: pointer;
 }
+
+/* styling for city weather conditions */
+#current-weather {
+    border: 1px solid #373737;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 0 100px 0 200px;
+}
