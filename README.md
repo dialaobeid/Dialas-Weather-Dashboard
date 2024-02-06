@@ -15,6 +15,7 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
 Created my code with some assistance frm Xpert learning assistant and google.
+Had issues placing the search history directly underneath the search bar.
 
 Screenshot:
 ![Alt text]
