@@ -8,6 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
             getWeather(cityInput);
         });
 
+    // Event listener for clicking on search hx items
+    document.getElementById('search-history').addEventListener('click', function (event) {
+        if (event.target.tagName === 'LI') {
+            var city = event.target.textContent;
+            getWeather(city);
+        }
+    });
+
 
     // Function to get weather data from API
     function getWeather(city) {
@@ -104,25 +112,24 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
     }
 
-
-    // Function to add city to search hx
+    // Function to add city to search history
     function addSearchHistory(city) {
-        // Get search hx from localStorage
+        // Get search history from localStorage
         var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
-        // Add new city to the search hx
+        // Add new city to the search history
         if (!searchHistory.includes(city)) {
             searchHistory.push(city);
 
-            // updated search hx in localStorage
+            // Update search history in localStorage
             localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
-            // search hx in the DOM displayed
+            // Update search history in the DOM and make it clickable
             document.getElementById('search-history').innerHTML = `
                 <ul class="search-history-list">
                     ${searchHistory.map(function (item) {
-                return `<li>${item}</li>`;
-            }).join('')}
+                        return `<li>${item}</li>`;
+                    }).join('')}
                 </ul>
             `;
         }
