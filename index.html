@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Diala's Weather Dashboard</title>
 </head>
 <body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <div class="container">
+        <!-- Form to input city of choice -->
+        <form id="city-search-form">
+            <label for="city-input">Search for a City:</label>
+            <input type="text" id="city-input" placeholder="Enter city name" required>
+            <button type="submit">Search</button>
+        </form>
 
-    <script src="script.js"></script>
+        <!-- Current city's weather display -->
+        <div id="current-weather"></div>
+
+        <!-- 5-day forecast display -->
+        <div id="forecast"></div>
+
+        <!-- Search history display (local storage) -->
+        <div id="search-history"></div>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
