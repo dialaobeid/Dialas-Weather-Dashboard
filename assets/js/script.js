@@ -3,12 +3,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('city-search-form').addEventListener('submit',
         function (event) {
             event.preventDefault();
-
             var cityInput = document.getElementById('city-input').value;
             getWeather(cityInput);
         });
 
-    // Event listener for clicking on search hx items
+    // Event listener for clicking on search hx items and fetching their weather conditions 
     document.getElementById('search-history').addEventListener('click', function (event) {
         if (event.target.tagName === 'LI') {
             var city = event.target.textContent;
@@ -16,11 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-
     // Function to get weather data from API
     function getWeather(city) {
         // created Openweather account to activate my own API key 
-        var apiKey = "f4e7341f10db32cef5c9aa89dbcc4a4c";
+        var apiKey = "f4e7341f10db32cef5c9aa89dbcc4a4c"; // my API key
         var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
 
         // API request using fetch 
@@ -34,10 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(function (data) {
                 // processes and displays current weather
                 currentWeather(data);
-
                 // processes and displays 5-day forecast
                 cityForecast(data);
-
                 // cities added to search hx
                 addSearchHistory(city);
             })
@@ -46,19 +42,18 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    // necessary conversion of temp and wind speed to proper units
-    // Function to convert temp from K to F
+    // Necessary conversion of temp & wind speed to proper units
+    // Functions to convert temp from K to F and wind speed from m/s to mph
     function kToF(kelvin) {
         return ((kelvin - 273.15) * 9 / 5 + 32).toFixed(2);
     }
-    // Function to convert wind speed from m/s to mph
     function mPStoMPH(mps) {
         return (mps * 2.23694).toFixed(2);
     }
 
     // Function to display current city weather
     function currentWeather(data) {
-        // variables to extract data from API
+        // weather variables to extract data from API
         var cityChoice = data.city.name;
         var date = new Date(data.list[0].dt * 1000);
         var icon = data.list[0].weather[0].icon;
@@ -66,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var humidity = data.list[0].main.humidity;
         var wind = data.list[0].wind.speed;
 
-        // Conversion variables for temp and wind
+        // Conversion variables for temp & wind
         var tempF = kToF(temp);
         var windMph = mPStoMPH(wind);
 
@@ -79,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <p>Humidity: ${humidity}%</p>
         `;
     }
-
+    
     // Function to display 5-day forecast
     function cityForecast(data) {
         // Get necessary data for the 5-day forecast
@@ -112,19 +107,17 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
     }
 
-    // Function to add city to search history
+    // Function to add city to search hx
     function addSearchHistory(city) {
-        // Get search history from localStorage
+        // Get search hx from localStorage
         var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-
-        // Add new city to the search history
+        // Add new city to the search hx
         if (!searchHistory.includes(city)) {
             searchHistory.push(city);
 
-            // Update search history in localStorage
+            // Update search hx in localStorage
             localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-
-            // Update search history in the DOM and make it clickable
+            // Update search hx in the DOM and make it clickable
             document.getElementById('search-history').innerHTML = `
                 <ul class="search-history-list">
                     ${searchHistory.map(function (item) {
