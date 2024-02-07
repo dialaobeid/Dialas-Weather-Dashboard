@@ -14,8 +14,8 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
-Created my code with some assistance frm Xpert learning assistant and google.
-Had issues with styling and building the search history section.
+Created my code with some assistance from Xpert learning assistant and google.
+Had issues with styling and building the search history section. 
 
 Screenshot:
 ![Alt text](/assets/Project-Screenshot%20.png)
